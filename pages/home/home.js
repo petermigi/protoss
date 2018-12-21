@@ -22,15 +22,15 @@ Page({
 
     _loadData:function(){
         var id = 1;
-        var data = home.getBannerData(id,(res)=>{console.log(res.items)});
-        //console.log(data);
+        var data = home.getBannerData(id,(res)=>{
+            //console.log(res)  
+            this.setData({
+                'bannerArr':res.items
+            });      
+        });  
+          
     },
-
-    /* 
-        callback:function(res){
-            console.log(res)
-        } 
-    */
+    
 
    
 })
