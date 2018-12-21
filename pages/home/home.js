@@ -22,13 +22,15 @@ Page({
 
     _loadData:function(){
         var id = 1;
-        var data = home.getBannerData(id,this.callback);
+        var data = home.getBannerData(id,(res)=>{console.log(res)});
         //console.log(data);
     },
 
-    callback:function(res){
-        console.log(res)
-    }
+    /* 
+        callback:function(res){
+            console.log(res)
+        } 
+    */
 
    
 })
