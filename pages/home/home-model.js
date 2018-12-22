@@ -5,23 +5,40 @@ class Home extends Base{
         super();
     }
     
+    //首页banner的数据
     getBannerData(id,callback){
 
         var params = {
             url: 'banner/'+id,
-            sCallBack:function(res) {
-                callback && callback(res);
+            sCallback:function(res) {
+                callback && callback(res.items);
             }
         }
-        this.request(params);
-        /* wx.request({
-            url: 'http://lh.zerg.com/api/v1/banner/' + id,
-            method:'GET',
-            success:function(res){
-                //console.log(res);
-                callback(res);
+        this.request(params);        
+    }
+
+    /* 首页精选主题的数据 */
+    getThemeData(callback){
+
+        var params = {
+            url: 'theme?ids=1,2,3',
+            sCallback:function(data) {
+                callback && callback(data);
             }
-        }) */
+        }
+        this.request(params);        
+    }
+
+    /* 首页最近新品的数据 */
+    getProductsData(callback){
+
+        var params = {
+            url: 'product/recent',
+            sCallback:function(data) {
+                callback && callback(data);
+            }
+        }
+        this.request(params);        
     }
 }
 

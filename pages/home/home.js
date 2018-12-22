@@ -21,13 +21,28 @@ Page({
     },
 
     _loadData:function(){
+
+        //获取首页banner轮播图数据并绑定到视图层wxml文件上
         var id = 1;
-        var data = home.getBannerData(id,(res)=>{
-            //console.log(res)  
+        home.getBannerData(id,(res)=>{             
             this.setData({
-                'bannerArr':res.items
+                'bannerArr':res
             });      
         });  
+
+    //获取首页精选主题数据并绑定到视图层wxml文件上
+        home.getThemeData((res)=>{            
+            this.setData({
+                'themeArr':res
+            });
+        })
+
+    //获取首页最近新品数据并绑定到视图层wxml文件上
+        home.getProductsData((res)=>{            
+            this.setData({
+                'productsArr':res
+            });
+        })
           
     },
     
