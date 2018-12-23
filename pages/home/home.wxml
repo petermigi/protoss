@@ -1,7 +1,7 @@
 <!--pages/home/home.wxml-->
 <import src="../tpls/products/products-tpl.wxml"/>
 <!-- 首页home页面 开始-->
-<view>
+<view class="container">
 <!-- 首页顶部区域 开始-->
    <!-- 首页轮播图 所在结构:顶部-->
    <swiper indicator-dots="true" autoplay="true" class="swiper">
