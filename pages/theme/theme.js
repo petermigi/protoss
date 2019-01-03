@@ -21,11 +21,23 @@ Page({
         
         //把页面跳转参数保存到页面对象Page的data属性中,以便在当前页面全局范围内使用
         this.data.id = id;
-        this.data.name = name;
+        this.data.name = name;  
+        
+        //加载主题页面数据
         this._loadData();
     },
 
-    //加载主题页面数据
+     /**
+     * 生命周期函数--监听页面渲染:代表页面已经准备妥当,可以和视图层进行交互.
+     */
+    onReady: function () {
+        //动态设置导航栏标题文字
+        wx.setNavigationBarTitle({
+            title: this.data.name,           
+        });
+    },
+ 
+    //加载主题页面数据的方法
     _loadData:function() {  
         //console.log(this.data.id);      
         theme.getProductsData(this.data.id,(data)=>{            
