@@ -60,7 +60,7 @@
         <view class="product-detail-box">
             <!-- 商品详情选项卡详细内容部分 -->
             <view class="product-detail-imgs" hidden="{{currentTabsIndex!=0}}">
-                <block wx:for="{{product.imgs}}">
+                <block wx:for="{{product.imgs}}" wx:key="id">
                     <image src="{{item.img_url.url}}" mode="aspectFill"></image>
                 </block>
             </view>
