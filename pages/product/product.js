@@ -1,6 +1,8 @@
 // pages/product/product.js
 import { Product } from 'product-model.js';
+import { Cart } from '../cart/cart-model.js';
 var product = new Product();
+var cart = new Cart();
 
 Page({
 
@@ -24,8 +26,9 @@ Page({
     },
 
     _loadData: function () {
-        product.getDetailInfo(this.data.id, (data)=>{
+        product.getDetailInfo(this.data.id, (data)=>{            
             this.setData({
+                cartTotalCounts: cart.getCartTotalCounts(),
                 product:data
             });
         });
@@ -44,6 +47,28 @@ Page({
         this.setData({
             currentTabsIndex: index
         });
+    },
+
+    onAddingToCartTap: function() {
+        this.addToCart();
+        var counts = this.data.cartTotalCounts + this.data.productCount;
+        this.setData({
+            cartTotalCounts: cart.getCartTotalCounts()
+        });
+    },
+
+    addToCart: function(){
+        var tempObj = {};
+        var keys = ['id', 'name', 'main_img_url', 'price'];
+
+        for (var key in this.data.product) {
+            if (keys.indexOf(key) >= 0) {
+                tempObj[key] = this.data.product[key];
+            }
+        }
+        
+        cart.add(tempObj, this.data.productCount);
+
     }
 
     
