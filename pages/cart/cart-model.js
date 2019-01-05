@@ -44,15 +44,22 @@ class Cart extends Base {
 
     /**        
         * 功能说明:计算购物车内商品总数量
-        * 参数说明:
+        * 参数说明: flag 为true时考虑商品的选择状态 返回的是选中的商品总个数
         * 
     **/
-   getCartTotalCounts(){
+   getCartTotalCounts(flag){
        var data = this.getCartDataFromLocal();
        var counts = 0;
 
        for(let i= 0; i < data.length; i++) {
-            counts += data[i].counts;
+            if(flag){
+                if(data[i].selectStatus){
+                    counts += data[i].counts;
+                }
+            }  
+            else {
+                counts += data[i].counts;
+            }          
        }
        return counts;
    }

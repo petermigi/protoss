@@ -1,5 +1,5 @@
 // pages/product/product.js
-import { Product } from 'product-model.js';
+import { Product } from './product-model.js';
 import { Cart } from '../cart/cart-model.js';
 var product = new Product();
 var cart = new Cart();
