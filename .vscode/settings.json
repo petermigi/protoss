@@ -2,6 +2,6 @@
     "files.associations": {
         "*.tpl": "html",
         "*.wxml": "wxml",
-        "*.wxss": "wxs"
+        "*.wxss": "css"
     }
 }

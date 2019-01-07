@@ -25,10 +25,13 @@ Page({
     onShow: function () {
         var cartData = cart.getCartDataFromLocal();
         //购物车中选中的商品总个数
-        var countsInfo = cart.getCartTotalCounts(true);
+        //var countsInfo = cart.getCartTotalCounts(true);
+        var cal = this._calcTotalAccountAndCounts(cartData);
 
         this.setData({
-            selectedCounts: countsInfo,
+            selectedCounts: cal.selectedCounts,
+            selectedTypeCounts:cal.selectedTypeCounts,
+            account: cal.account,
             cartData: cartData
         });
     },
