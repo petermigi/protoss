@@ -8,7 +8,7 @@ Page({
     /**
      * 页面的初始数据
      */
-    data: {
+    data: {       
 
     },
 
@@ -16,7 +16,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        
+       
     },
 
     /**
@@ -36,6 +36,7 @@ Page({
         });
     },
 
+    /* 计算购物车选中的商品总金额和商品总数 */
     _calcTotalAccountAndCounts: function(data){
         var len = data.length,
 
@@ -66,6 +67,58 @@ Page({
             account: account / (multiple * multiple)
         };
 
+    },
+
+    /**
+        *
+        *
+        * 功能说明: 点击购物车页面商品勾选框事件处理函数
+        * 参数说明:
+        * 
+    **/
+    toggleSelect:function(event){
+        var id = cart.getDataSet(event, 'id'),        
+            status = cart.getDataSet(event, 'status'),
+
+            //得到页面数据区data中的购物车数组中的单个商品的索引序号
+            index = this._getProductIndexById(id);
+            this.data.cartData[index].selectStatus = !status;            
+            this._resetCartData();
+
+    },
+
+    //重新计算购物车页面中商品选中状态改变后的购物车选中的商品总金额和商品总数
+    _resetCartData: function () {
+        var newData = this._calcTotalAccountAndCounts(this.data.cartData);
+        this.setData({
+            account: newData.account,
+            selectedCounts: newData.selectedCounts,
+            selectedTypeCounts: newData.selectedTypeCounts,
+            cartData: this.data.cartData
+        });
+    },
+
+    /**
+        *
+        *
+        * 功能说明: 点击购物车页面商品全选按钮事件处理函数
+        * 参数说明:
+        * 
+    **/
+    toggleSelectAll:function(event){
+
+    },
+
+    /* 根据商品id得到 商品所在下标 */
+    _getProductIndexById: function (id) {
+        var data = this.data.cartData,
+        len = data.length;
+
+        for (let i = 0; i< len; i++) {
+            if(data[i].id == id) {
+                return i;
+            }
+        }
     }
 
    

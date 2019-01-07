@@ -2,15 +2,15 @@
     <block wx:if="{{cartData.length>0}}">
 
         <view class="cart-box">
-            <block wx:for="{{cartData}}">
+            <block wx:for="{{cartData}}" wx:key="id">
                 <view class="cart-item">
                     <view class="cart-item-main">
 
                         <!-- 购物车商品勾选框 -->
-                        <view class="cart-item-checkbox">
+                        <view class="cart-item-checkbox" ontap="toggleSelect" data-id="{{item.id}}" data-status="{{item.selectStatus}}">
                             <image wx:if="{{item.selectStatus}}" src="../../imgs/icon/circle@selected.png">
                             </image>
-                            <image wx:else src="../../imgs/icon/circle@selected.png">
+                            <image wx:else src="../../imgs/icon/circle@noselected.png">
                             </image>
                         </view>
 
@@ -69,6 +69,6 @@
 
     <view wx:else class="no-data">
         您没有添加任何商品
-    </view>
+    </view>    
 
 </view>
