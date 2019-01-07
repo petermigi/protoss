@@ -106,7 +106,15 @@ Page({
         * 
     **/
     toggleSelectAll:function(event){
+        var status = cart.getDataSet(event, 'status') == 'true';
 
+        var data = this.data.cartData,
+            len = data.length;
+
+        for (let i =0; i < len; i++){
+            data[i].selectStatus = !status;
+        }
+        this._resetCartData();
     },
 
     /* 根据商品id得到 商品所在下标 */
