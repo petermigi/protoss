@@ -91,7 +91,7 @@ class Cart extends Base {
     /**
         *
         *
-        * 功能说明:修改商品数目
+        * 功能说明:修改本地缓存中的购物车数组中的单个商品数目
         * 参数说明:
         * @param  [int] id [商品id]
         * @param  [int] counts [数目变化量]        

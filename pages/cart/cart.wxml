@@ -31,7 +31,7 @@
                             <!-- 购物车商品描述底部区域 数量减少,添加,删除按钮 - + x -->
                             <view class="bottom-box">
                                 <view class="cart-item-counts">
-                                    <view class="btns" bindtap="changeCounts" data-id="{{item.id}}" data-type="cut">-</view>
+                                    <view class="btns {{item.counts==1?'disabled':''}}" bindtap="changeCounts" data-id="{{item.id}}" data-type="cut">-</view>
                                     <view class="counts">{{item.counts}}</view>
                                     <view class="btns" bindtap="changeCounts" data-id="{{item.id}}" data-type="add">+</view>
                                 </view>
