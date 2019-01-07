@@ -127,6 +127,24 @@ Page({
                 return i;
             }
         }
+    },
+
+    //购物车页面点击+,-号按钮修改购买商品的数量事件处理函数
+    changeCounts:function(event){
+        var id = cart.getDataSet(event, 'id'),
+            type = cart.getDataSet(event, 'type'),
+            index = this._getProductIndexById(id),
+            counts = 1;     
+            
+        if(type == 'add'){
+            cart.addCounts(id);
+        } else {
+            counts = -1;
+            cart.cutCounts(id);
+        }
+                
+        this.data.cartData[index].counts += counts;
+        this._resetCartData();
     }
 
    

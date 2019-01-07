@@ -87,6 +87,46 @@ class Cart extends Base {
         }
         return result;
     }
+
+    /**
+        *
+        *
+        * 功能说明:修改商品数目
+        * 参数说明:
+        * @param  [int] id [商品id]
+        * @param  [int] counts [数目变化量]        
+    **/
+    _changeCounts(id, counts){
+        var cartData = this.getCartDataFromLocal(),
+            hasInfo = this._isHasThatOne(id, cartData);
+
+        if(hasInfo.index != -1){
+            if(hasInfo.data.counts > 1){
+                cartData[hasInfo.index].counts += counts;
+            }
+        }
+
+        //更新本地缓存
+        wx.setStorageSync(this._storageKeyName, cartData); 
+
+    }
+
+    /* 
+        增加购物车商品数目
+    */
+    addCounts(id){
+        this._changeCounts(id, 1);
+    }
+
+    /* 
+        减少购物车商品数目
+    */
+    cutCounts(id){
+        this._changeCounts(id, -1);
+    }
+
+
+
 }
 
 export { Cart };
