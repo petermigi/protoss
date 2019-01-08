@@ -145,6 +145,17 @@ Page({
                 
         this.data.cartData[index].counts += counts;
         this._resetCartData();
+    },
+
+    delete:function(event){
+        var id = cart.getDataSet(event, 'id'),
+            index = this._getProductIndexById(id);
+
+            this.data.cartData.splice(index, 1); //删除某一项商品
+
+            this._resetCartData();
+
+            cart.delete(id);
     }
 
    

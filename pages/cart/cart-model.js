@@ -125,6 +125,24 @@ class Cart extends Base {
         this._changeCounts(id, -1);
     }
 
+    /* 
+        删除购物车商品
+    */
+   delete(ids){
+       if(!(ids instanceof Array)){
+            ids = [ids];
+       }
+       var cartData = this.getCartDataFromLocal();
+       for (let i = 0; i < ids.length; i++) {
+            var hasInfo = this._isHasThatOne(ids[i], cartData);
+            if (hasInfo.index != -1) {
+                cartData.splice(hasInfo.index, 1); //删除数组某一项
+            }
+       }
+
+       wx.setStorageSync(this._storageKeyName, cartData);
+   }
+
 
 
 }

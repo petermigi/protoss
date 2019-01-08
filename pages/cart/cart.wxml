@@ -37,7 +37,7 @@
                                 </view>
 
                                 <!-- 购物车商品删除按钮 -->
-                                <view class="delete">x</view>
+                                <view class="delete" data-id="{{item.id}}" bindtap="delete">x</view>
 
                             </view>  
 
