@@ -49,7 +49,7 @@
         </view>
 
         <view class="footer-account-box all-accounts-box">
-            <view class="all-select" ontap="toggleSelectAll" data-status="{{selectedTypeCounts==cartData.length?'true':'false'}}">
+            <view class="all-select" bindtap="toggleSelectAll" data-status="{{selectedTypeCounts==cartData.length?'true':'false'}}">
                 <image wx:if="{{selectedTypeCounts==cartData.length}}"
                        class="title-icon" src="../../imgs/icon/all@selected.png"></image>
                 <image wx:else class="title-icon" src="../../imgs/icon/all.png"></image>

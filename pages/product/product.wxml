@@ -3,7 +3,7 @@
     <!-- 商品详情页面头部区域 开始 -->
     <view class="detail-header-box">
         <!-- 头部购物车按钮小图标区域 -->
-        <view class="fixed-btns-box">
+        <view class="fixed-btns-box" bindtap="onCartTap">
             <!-- 视频课程源码拼写错误: 类名fixed-cart写成了fiexed-cart,导致只能样式文件wxss中只能使用这个拼写错误的样式类名fiexd-cart -->
             <view class="fiexd-cart">
                 <image src="../../imgs/icon/cart@top.png"></image>

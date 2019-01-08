@@ -28,6 +28,11 @@ class Cart extends Base {
         wx.setStorageSync(this._storageKeyName, cartData)
     }
 
+    /* 本地缓存 保存/更新 */
+    execSetStorageSync(Data){
+        wx.setStorageSync(this._storageKeyName, Data);
+    }
+
     /**
         *
         *
