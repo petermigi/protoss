@@ -20,7 +20,7 @@ Page({
     },
 
     onHide:function(){
-        cart.execSetStorageSync(this.data.cartData)
+       cart.execSetStorageSync(this.data.cartData)
     },
 
     /**
@@ -31,6 +31,8 @@ Page({
         //购物车中选中的商品总个数
         //var countsInfo = cart.getCartTotalCounts(true);
         var cal = this._calcTotalAccountAndCounts(cartData);
+
+        console.log(cal);
 
         this.setData({
             selectedCounts: cal.selectedCounts,

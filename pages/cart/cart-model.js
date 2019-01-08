@@ -29,8 +29,8 @@ class Cart extends Base {
     }
 
     /* 本地缓存 保存/更新 */
-    execSetStorageSync(Data){
-        wx.setStorageSync(this._storageKeyName, Data);
+    execSetStorageSync(data){
+        wx.setStorageSync(this._storageKeyName, data);
     }
 
     /**
