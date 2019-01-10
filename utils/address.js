@@ -28,6 +28,37 @@ class Address extends Base {
             flag = centerCitys.indexOf(name)>=0;
             return flag;
     }
+
+    /* 更新保存用户收货地址 */
+    submitAddress(data, callback){
+        data = this._setUpAddress(data);
+        var param = {
+            url: 'address',
+            type: 'post',
+            data: data, 
+            sCallback: function (res) {
+                callback && callback(true, res);
+
+            },
+            eCallback: function (res) {
+                callback && callback(false, res);
+            }
+        };
+        this.request(param);
+    }
+
+    /* 改变保存地址数据的字段名保证与我们自己的服务器数据库中的用户收货地址表中的字段名相同 */
+    _setUpAddress(res){
+        var formData = {
+            name: res.userName,
+            province: res.provinceName,
+            city: res.cityName,
+            country:res.countryName,
+            mobile: res.telNumber,
+            detail: res.detailInfo
+        };
+        return formData;
+    }
 }
 
 export { Address }
