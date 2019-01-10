@@ -1,7 +1,12 @@
 // pages/order/order.js
 
 import { Cart } from '../cart/cart-model.js';
+//import { Order } from '../order/order-model.js';
+import { Address } from '../../utils/address.js';
+
 var cart = new Cart();
+//var order = new Order();
+var address = new Address();
 
 Page({
 
@@ -19,7 +24,7 @@ Page({
         //订单的商品信息是购物车中提交的选中商品的信息
         var productsArr;
         this.data.account = options.account;
-        console.log(options.account);
+        
 
         //订单的商品信息是购物车中提交的选中商品的信息
         productsArr = cart.getCartDataFromLocal(true);
@@ -28,6 +33,29 @@ Page({
             productsArr: productsArr,
             account: options.account,
             orderStatus: 0
+        });
+    },
+
+    editAddress: function(){
+        var that = this;
+        wx.chooseAddress({
+            success:function(res){
+
+                var addressInfo = {
+                    name: res.userName,
+                    mobile: res.telNumber,
+                    totalDetail: address.setAddressInfo(res)
+                };
+
+                that._bindAddressInfo(addressInfo);
+            }
+        });
+    },
+
+    /* 绑定地址信息 */
+    _bindAddressInfo: function (addressInfo) {
+        this.setData({
+            addressInfo: addressInfo
         });
     },
 
