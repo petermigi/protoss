@@ -1,5 +1,7 @@
 
-import { Config } from '../utils/config.js';
+import { Config } from './config.js';
+import { Token } from './token.js';
+
 class Base{
     constructor(){
         this.baseRequestUrl = Config.restUrl;
@@ -32,9 +34,7 @@ class Base{
                     params.sCallback && params.sCallback(res.data);
                 }
                 else {
-                    //向服务器端API接口请求失败获得响应(HTTP状态码为4开头如400)
-                    params.eCallback && params.eCallback(res.data);
-                    
+                    //向服务器端API接口请求失败获得响应(HTTP状态码为4开头如400)                       
                     
                     if (code == '401') {
                         //token.getTokenFromServer
@@ -60,9 +60,14 @@ class Base{
                         //noRefetch为true时不执行that._refetch(params),不重发请求了
                         if(!noRefetch){
                             that._refetch(params);
-                        }
-                        
+                        }                        
                     }
+
+                    //不再重发了才执行eCallback()回调函数
+                    if(noRefetch){
+                        params.eCallback && params.eCallback(res.data);
+                    }
+                    
                 }
                 
             },
