@@ -53,7 +53,7 @@ class Address extends Base {
             name: res.userName,
             province: res.provinceName,
             city: res.cityName,
-            country:res.countryName,
+            country:res.countyName,
             mobile: res.telNumber,
             detail: res.detailInfo
         };
