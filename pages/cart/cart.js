@@ -30,9 +30,7 @@ Page({
         var cartData = cart.getCartDataFromLocal();
         //购物车中选中的商品总个数
         //var countsInfo = cart.getCartTotalCounts(true);
-        var cal = this._calcTotalAccountAndCounts(cartData);
-
-        console.log(cal);
+        var cal = this._calcTotalAccountAndCounts(cartData);  
 
         this.setData({
             selectedCounts: cal.selectedCounts,
@@ -162,6 +160,13 @@ Page({
             this._resetCartData();
 
             cart.delete(id);
+    },
+
+    //点击箭头事件:提交购物车选中商品信息跳转到订单页面
+    submitOrder: function(event){
+        wx.navigateTo({
+            url: '../order/order?account=' + this.data.account + '&from=cart'
+        });
     }
 
    
