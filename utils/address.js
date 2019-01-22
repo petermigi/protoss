@@ -22,6 +22,21 @@ class Address extends Base {
         return totalDetail;
     }
 
+    /*获得我自己的收货地址*/
+    getAddress(callback){
+        var that=this;
+        var param={
+            url: 'address',
+            sCallback:function(res){
+                if(res) {
+                    res.totalDetail = that.setAddressInfo(res);
+                    callback && callback(res);
+                }
+            }
+        };
+        this.request(param);
+    }
+
     /* 是否为直辖市 */
     isCenterCity(name){
         var centerCitys = ['北京市', '天津市', '上海市', '重庆市'],

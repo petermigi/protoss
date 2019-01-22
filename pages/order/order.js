@@ -34,6 +34,11 @@ Page({
             account: options.account,
             orderStatus: 0
         });
+
+        /*显示收获地址*/
+        address.getAddress((res)=> {
+            this._bindAddressInfo(res);
+        });
     },
 
     editAddress: function(){
