@@ -38,7 +38,7 @@ Page({
 
         this._getOrders();
         order.execSetStorageSync(false);  //更新标志位
-        
+
     },
 
     /**地址信息**/
@@ -90,6 +90,7 @@ Page({
             var data=res.data;
             that.setData({
                 loadingHidden: true
+                
             });
             if(data.length>0) {
                 that.data.orderArr.push.apply(that.data.orderArr,res.data);  //数组合并
