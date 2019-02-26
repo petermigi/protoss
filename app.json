@@ -6,7 +6,8 @@
         "pages/my/my",
         "pages/product/product",
         "pages/theme/theme",
-        "pages/order/order"
+        "pages/order/order",
+        "pages/pay-result/pay-result"
     ],
     "window": {
         "navigationBarBackgroundColor": "#AB956D",
