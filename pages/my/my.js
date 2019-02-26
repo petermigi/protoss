@@ -38,6 +38,7 @@ Page({
 
         this._getOrders();
         order.execSetStorageSync(false);  //更新标志位
+        
     },
 
     /**地址信息**/
