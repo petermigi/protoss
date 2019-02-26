@@ -22,9 +22,21 @@ Page({
     onShow:function(){
         //更新订单,相当自动下拉刷新,只有  非第一次打开 “我的”页面，且有新的订单时 才调用。
         var newOrderFlag=order.hasNewOrder();
-        if(this.data.loadingHidden &&newOrderFlag){
-            this.onPullDownRefresh();
+        if(newOrderFlag){
+            this.refresh();
         }
+        
+    },
+
+    /*刷新my页面*/
+    refresh: function(){
+        var that=this;
+        this.data.orderArr=[];  //订单初始化
+        this._getOrders(()=>{
+            that.data.isLoadedAll=false;  //是否加载完全
+            that.data.pageIndex=1;           
+            order.execSetStorageSync(false);  //更新标志位
+        });
     },
 
     _loadData:function(){
@@ -150,19 +162,6 @@ Page({
             }
         });
     },
-
-    /*下拉刷新页面*/
-    onPullDownRefresh: function(){
-        var that=this;
-        this.data.orderArr=[];  //订单初始化
-        this._getOrders(()=>{
-            that.data.isLoadedAll=false;  //是否加载完全
-            that.data.pageIndex=1;
-            wx.stopPullDownRefresh();
-            order.execSetStorageSync(false);  //更新标志位
-        });
-    },
-
 
     onReachBottom:function(){
         if(!this.data.isLoadedAll) {
