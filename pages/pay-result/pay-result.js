@@ -10,6 +10,14 @@ Page({
             from:options.from
         });
     },
+    /**
+        *
+        *
+        * 功能说明: 查看订单事件处理函数
+        * 参数说明:
+        * @param  [type] $arg [description]
+        * @return [type]      [description]
+    **/
     viewOrder:function(){
         if(this.data.from=='my'){
             wx.redirectTo({
