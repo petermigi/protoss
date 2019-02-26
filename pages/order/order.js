@@ -21,9 +21,33 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        var from = options.from;
+        if(from == 'cart'){
+            //从购物车页面入口过来的,数据从本地缓存中获得
+            this._fromCart(options.account);
+        }
+        else{
+            //从my页面或者pay-resul入口过来的,数据从服务器数据库中获得
+            var id = options.id;
+            this._fromOrder(id);
+        }
+
+    },
+
+    /**
+     * 生命周期函数--监听页面显示
+     */
+    onShow: function () {
+        if(this.data.id){
+            _fromOrder(this.data.id);
+        }
+    },
+    
+    //从购物车页面入口过来的,数据从本地缓存中获得
+    _fromCart:function(account){
         //订单的商品信息是购物车中提交的选中商品的信息
         var productsArr;
-        this.data.account = options.account;
+        this.data.account = account;
         
 
         //订单的商品信息是购物车中提交的选中商品的信息
@@ -31,7 +55,7 @@ Page({
 
         this.setData({
             productsArr: productsArr,
-            account: options.account,
+            account: account,
             orderStatus: 0
         });
 
@@ -41,15 +65,12 @@ Page({
         });
     },
 
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function () {
-
-        if(this.data.id) {
+    //从my页面或者pay-resul入口过来的,数据从服务器数据库中获得
+    _fromOrder:function(id){
+        if(id) {
             var that = this;
             //下单后，支付成功或者失败后，点左上角返回时能够更新订单状态 所以放在onshow中
-            var id = this.data.id;
+            //var id = this.data.id;
             order.getOrderInfoById(id, (data)=> {
                 that.setData({
                     orderStatus: data.status,
@@ -67,9 +88,7 @@ Page({
                 that._bindAddressInfo(addressInfo);
             });
         }
-
     },
-
 
     editAddress: function(){
         var that = this;
